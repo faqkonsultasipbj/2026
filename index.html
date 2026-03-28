@@ -410,7 +410,6 @@ function searchFAQ() {
 
         if (text.includes(input)) {
             item.style.display = "";
-            item.open = true;
         } else {
             item.style.display = "none";
         }
@@ -420,20 +419,19 @@ function searchFAQ() {
         var visibleItems = section.querySelectorAll(".section-content details:not([style*='display: none'])");
 
         if (visibleItems.length > 0) {
-            section.open = true;
             section.style.display = "";
         } else {
             section.style.display = "none";
         }
     });
 
+    // reset kalau search kosong
     if (input === "") {
         items.forEach(function(item) {
             item.style.display = "";
         });
         sections.forEach(function(section) {
             section.style.display = "";
-            section.open = false;
         });
     }
 }
