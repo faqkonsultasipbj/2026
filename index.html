@@ -405,6 +405,18 @@ function searchFAQ() {
     var items = document.querySelectorAll(".section-content details");
     var sections = document.querySelectorAll(".main-section");
 
+    // ✅ kalau kosong → reset & tutup semua
+    if (input === "") {
+        items.forEach(function(item) {
+            item.style.display = "";
+        });
+        sections.forEach(function(section) {
+            section.style.display = "";
+            section.open = false; // ini yang bikin ga kebuka lagi
+        });
+        return;
+    }
+
     items.forEach(function(item) {
         var text = item.innerText.toLowerCase();
 
@@ -424,16 +436,6 @@ function searchFAQ() {
             section.style.display = "none";
         }
     });
-
-    // reset kalau search kosong
-    if (input === "") {
-        items.forEach(function(item) {
-            item.style.display = "";
-        });
-        sections.forEach(function(section) {
-            section.style.display = "";
-        });
-    }
 }
 </script>
 
