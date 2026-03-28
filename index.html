@@ -402,16 +402,40 @@ Website FAQ Konsultasi Pengadaan Barang/Jasa © 2026
 <script>
 function searchFAQ() {
     var input = document.getElementById("searchInput").value.toLowerCase();
-    var details = document.querySelectorAll("details");
+    var items = document.querySelectorAll(".section-content details");
+    var sections = document.querySelectorAll(".main-section");
 
-    details.forEach(function(item) {
+    items.forEach(function(item) {
         var text = item.innerText.toLowerCase();
+
         if (text.includes(input)) {
             item.style.display = "";
+            item.open = true;
         } else {
             item.style.display = "none";
         }
     });
+
+    sections.forEach(function(section) {
+        var visibleItems = section.querySelectorAll(".section-content details:not([style*='display: none'])");
+
+        if (visibleItems.length > 0) {
+            section.open = true;
+            section.style.display = "";
+        } else {
+            section.style.display = "none";
+        }
+    });
+
+    if (input === "") {
+        items.forEach(function(item) {
+            item.style.display = "";
+        });
+        sections.forEach(function(section) {
+            section.style.display = "";
+            section.open = false;
+        });
+    }
 }
 </script>
 
